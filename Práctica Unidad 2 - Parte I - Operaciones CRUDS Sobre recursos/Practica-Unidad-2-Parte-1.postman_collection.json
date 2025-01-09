@@ -1,0 +1,922 @@
+{
+	"info": {
+		"_postman_id": "c7e3cc7f-762a-4ce6-8ac1-2f43cc8e919c",
+		"name": "Practica-Unidad-2-Parte-1",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33059216"
+	},
+	"item": [
+		{
+			"name": "Punto-1-get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient/7421bd74-e7a7-4e7f-9eaa-7c8a98ff8f8e",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient",
+						"7421bd74-e7a7-4e7f-9eaa-7c8a98ff8f8e"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-1-parametros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient?gender=female",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "female"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-2-apellido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient?family=Perez",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient"
+					],
+					"query": [
+						{
+							"key": "family",
+							"value": "Perez"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-2-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient/2dfb6d72-5802-4b94-8427-5a333ad365db",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient",
+						"2dfb6d72-5802-4b94-8427-5a333ad365db"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-3-observation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation?subject.family=Perez",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					],
+					"query": [
+						{
+							"key": "subject.family",
+							"value": "Perez"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Post data Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation/145595c7-4905-42c0-82cc-758f9a13185c",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation",
+						"145595c7-4905-42c0-82cc-758f9a13185c"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-5-todas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/AllergyIntolerance?category=medication&_count=2",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"AllergyIntolerance"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "medication"
+						},
+						{
+							"key": "_count",
+							"value": "2"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-5-count-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/AllergyIntolerance?category=medication&_count=2",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"AllergyIntolerance"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "medication"
+						},
+						{
+							"key": "_count",
+							"value": "2"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-6-todas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation?status=final",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "final"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-6-count-2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation?status=final&_count=2",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "final"
+						},
+						{
+							"key": "_count",
+							"value": "2"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation?_include=Observation:subject",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					],
+					"query": [
+						{
+							"key": "_include",
+							"value": "Observation:subject"
+						}
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-8-modificar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resourceType\": \"Patient\",\n    \"id\": \"610e20c7-dd24-4877-abc9-9f3901480fc9\",\n    \"name\": [\n        {\n            \"family\": \"Pepe\",\n            \"given\": [\n                \"josefa\"\n            ]\n        }\n    ],\n    \"gender\": \"other\",\n    \"birthDate\": \"1990-09-19\",\n    \"meta\": {\n        \"versionId\": \"5df5b10f-76d6-4225-add1-b15121555c27\",\n        \"lastUpdated\": \"2024-12-01T11:26:07.742+00:00\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient/610e20c7-dd24-4877-abc9-9f3901480fc9",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient",
+						"610e20c7-dd24-4877-abc9-9f3901480fc9"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-8-crear",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Patient\",\n  \"id\": \"1111111\",\n  \"name\": [{ \"family\": \"Ficticio\", \"given\": [\"Ejemplo\"] }],\n  \"gender\": \"female\",\n  \"birthDate\": \"2000-01-01\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-9-modificar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"resourceType\": \"Patient\",\n  \"id\": \"3badd2b6-07ff-450b-a472-2e446dd944d4\",\n  \"name\": [{ \"family\": \"FicticioModificado\", \"given\": [\"EjemploMod\"] }],\n  \"gender\": \"male\",\n  \"birthDate\": \"1999-12-31\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Patient/3badd2b6-07ff-450b-a472-2e446dd944d4",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Patient",
+						"3badd2b6-07ff-450b-a472-2e446dd944d4"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-11-modificar-observacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resourceType\": \"Observation\",\n    \"id\": \"ceb14b2b-a00a-4eb7-bde9-23d54ab89616\",\n    \"status\": \"amended\",\n    \"code\": {\n        \"coding\": [\n            {\n                \"system\": \"http://snomed.info/sct\",\n                \"code\": \"237055002\",\n                \"display\": \"Polycystic ovary syndrome\"\n            }\n        ],\n        \"text\": \"Sindrome de Ovario Poliquistico (PCOS)\"\n    },\n    \"subject\": {\n        \"reference\": \"https://server.fire.ly/r4/Patient/180fb09c-0ad2-4961-bac5-434a6ae6610d\"\n    },\n    \"valueCodeableConcept\": {\n        \"coding\": [\n            {\n                \"system\": \"http://snomed.info/sct\",\n                \"code\": \"386725007\",\n                \"display\": \"Absent\"\n            }\n        ],\n        \"text\": \"Ausente\"\n    },\n    \"effectiveDateTime\": \"2024-04-07\",\n    \"interpretation\": [\n        {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation\",\n                    \"code\": \"N\",\n                    \"display\": \"Normal\"\n                }\n            ],\n            \"text\": \"Normal\"\n        }\n    ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation/ceb14b2b-a00a-4eb7-bde9-23d54ab89616",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation",
+						"ceb14b2b-a00a-4eb7-bde9-23d54ab89616"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-11-nueva-observacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resourceType\": \"Observation\",\n    \"status\": \"final\",\n    \"code\": {\n        \"coding\": [\n            {\n                \"system\": \"http://loinc.org\",\n                \"code\": \"8302-2\",\n                \"display\": \"Body height\"\n            }\n        ],\n        \"text\": \"Altura corporal\"\n    },\n    \"subject\": {\n        \"reference\": \"https://server.fire.ly/r4/Patient/2dfb6d72-5802-4b94-8427-5a333ad365db\"\n    },\n    \"valueQuantity\": {\n        \"value\": 168,\n        \"unit\": \"cm\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"cm\"\n    },\n    \"effectiveDateTime\": \"2024-12-15T12:00:00Z\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-11-confirmar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"resourceType\": \"Observation\",\n    \"id\": \"145595c7-4905-42c0-82cc-758f9a13185c\",\n    \"text\": {\n        \"status\": \"generated\",\n        \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative: Observation</b><a name=\\\"domperidona\\\"> </a></p><div style=\\\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\\\"><p style=\\\"margin-bottom: 0px\\\">Resource Observation &quot;domperidona&quot; </p></div><p><b>identifier</b>: id: domperidona (use: OFFICIAL)</p><p><b>status</b>: final</p><p><b>code</b>: Domperidone 20 MG Oral Tablet <span style=\\\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\\\"> (<a href=\\\"http://snomed.info/sct\\\">SNOMED-CT</a>#308136)</span></p><p><b>subject</b>: <a href=\\\"https://server.fire.ly/Patient/c1437aac-55e2-4bad-beef-4cbac5602d5c\\\">Patient/c1437aac-55e2-4bad-beef-4cbac5602d5c</a> &quot;Camila Perez Ruiz&quot;</p><p><b>effective</b>: 2024-12-09T00:00:00Z</p><p><b>issued</b>: 2024-12-09T00:00:00Z</p><p><b>performer</b>: <a href=\\\"https://server.fire.ly/Practitioner/f005\\\">Practitioner/f005: A. Langeveld</a> &quot;Langeveld ANNE&quot;</p><p><b>value</b>: 20 mg<span style=\\\"background: LightGoldenRodYellow\\\"> (Details: UCUM code mg = 'mg')</span></p><p><b>interpretation</b>: Normal <span style=\\\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\\\"> (<a href=\\\"http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation.html\\\">ObservationInterpretation</a>#N)</span></p></div>\"\n    },\n    \"identifier\": [\n        {\n            \"use\": \"official\",\n            \"system\": \"http://www.hl7.org/fhir/observation-id\",\n            \"value\": \"domperidona\"\n        }\n    ],\n    \"status\": \"final\",\n    \"code\": {\n        \"coding\": [\n            {\n                \"system\": \"http://snomed.info/sct\",\n                \"code\": \"308136\",\n                \"display\": \"Domperidone 20 MG Oral Tablet\"\n            }\n        ]\n    },\n    \"subject\": {\n        \"reference\": \"https://server.fire.ly/r4/Patient/145595c7-4905-42c0-82cc-758f9a13185c\",\n        \"display\": \"Camila Perez Ruiz\"\n    },\n    \"effectiveDateTime\": \"2024-12-09T00:00:00Z\",\n    \"issued\": \"2024-12-09T00:00:00Z\",\n    \"performer\": [\n        {\n            \"reference\": \"https://server.fire.ly/r4/Practitioner/f005\",\n            \"display\": \"A. Langeveld\"\n        }\n    ],\n    \"valueQuantity\": {\n        \"value\": 20,\n        \"unit\": \"mg\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"mg\"\n    },\n    \"interpretation\": [\n        {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation\",\n                    \"code\": \"N\",\n                    \"display\": \"Normal\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"versionId\": \"91948b08-71b3-4ad3-b310-79425446feb8\",\n        \"lastUpdated\": \"2024-12-09T22:11:16.818+00:00\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation?subject=Patient/2dfb6d72-5802-4b94-8427-5a333ad365db",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation"
+					],
+					"query": [
+						{
+							"key": "subject",
+							"value": "Patient/2dfb6d72-5802-4b94-8427-5a333ad365db"
+						}
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Punto-12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://server.fire.ly/r4/Observation/{id}",
+					"protocol": "https",
+					"host": [
+						"server",
+						"fire",
+						"ly"
+					],
+					"path": [
+						"r4",
+						"Observation",
+						"{id}"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
