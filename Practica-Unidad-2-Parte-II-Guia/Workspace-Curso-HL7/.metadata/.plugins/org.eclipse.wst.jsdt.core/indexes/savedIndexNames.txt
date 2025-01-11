@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+/home/juanello/Apps/Workspace-Fotos/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2548704391.index
