@@ -47,7 +47,7 @@ public class TestApplicationHints {
 		//getPatientById("patient-id");
 
 		// Punto 1 - B  ok
-		//System.out.println("Obteniendo observación por ID:");
+		//System.out.println("Obteniendo observaciï¿½n por ID:");
 		//getObservationById("observation-id");
 
 		// Punto 1 - C  ok
@@ -66,19 +66,19 @@ public class TestApplicationHints {
 		//createPatient("John", "Doe", "1980-01-01", "male", "123 Main St", "Anytown", "Anystate", "USA");
 
 		// Punto 2 - B  ok 
-		// Modificar la dirección del paciente creado  
-		//System.out.println("Modificando la dirección del paciente:");
+		// Modificar la direcciï¿½n del paciente creado  
+		//System.out.println("Modificando la direcciï¿½n del paciente:");
 		//updatePatientAddress("patient-id", "456 Elm St", "Othertown", "Otherstate", "USA");
 
 		// Punto 2 - C  ok
-		// Copiar una observación y modificar el ID del paciente
-		//System.out.println("Copiando una observación y modificando el ID del paciente:");
-		//copyObservationWithNewPatientId("observation-id", "new-patient-id");
+		// Copiar una observaciï¿½n y modificar el ID del paciente
+		//System.out.println("Copiando una observaciï¿½n y modificando el ID del paciente:");
+		//copyObservationWithNewPatientId("a2179bca-9c7e-4f1c-9125-c7401c253c14", "new-patient-id");
 
 		// Punto 2 - D  --->>> DA error
-		// Modificar el estado de una observación existente
-		//System.out.println("Modificando el estado de una observación existente:");
-		//updateObservationStatus("81dd35e9-a7b5-4788-9c72-fc7b5a55aa20", "registered");
+		// Modificar el estado de una observaciï¿½n existente
+		//System.out.println("Modificando el estado de una observaciï¿½n existente:");
+		updateObservationStatus("a2179bca-9c7e-4f1c-9125-c7401c253c14", "final");
 		//listObservationStatuses();
 		//---------------------------------------------------//
 		
@@ -87,21 +87,21 @@ public class TestApplicationHints {
 	    //deletePatientById("patient-id1");
 
 	    // Punto 3 - B  ok
-	    //System.out.println("Eliminando múltiples pacientes por IDs:");
+	    //System.out.println("Eliminando mï¿½ltiples pacientes por IDs:");
 	    //deletePatientsByIds(new String[]{"patient-id1", "patient-id2"});
 
 	    // Punto 3 - C ok
-	    //System.out.println("Eliminando una observación por ID:");
+	    //System.out.println("Eliminando una observaciï¿½n por ID:");
 	    //deleteObservationById("observation-id1");
 
 	    // Punto 3 - D  ok
-	    //System.out.println("Eliminando múltiples observaciones por IDs:");
+	    //System.out.println("Eliminando mï¿½ltiples observaciones por IDs:");
 	    //deleteObservationsByIds(new String[]{"observation-id1", "observation-id2"});
 
 		
 	    // Punto 3 - E -->> Se pidio que era eliminar la observacion, pero ya se repite, igual este codigo funciona okk  <<<-----
 	    //System.out.println("Eliminando observaciones asociadas a un paciente por ID:");
-	    deleteObservationsByPatientId("patient-id");
+	    //deleteObservationsByPatientId("patient-id");
 		
 	}
 
@@ -285,7 +285,7 @@ public class TestApplicationHints {
 		Observation observation = client.read().resource(Observation.class).withId(observationId).execute();
 		observation.setStatus(Observation.ObservationStatus.fromCode(newStatus));
 
-		client.update().resource(observation).execute();
+		client.update().resource(observation).withId(observationId).execute();
 		ctx.getRestfulClientFactory().setServerValidationMode(ServerValidationModeEnum.NEVER);
 
 		Observation updatedObservation = client.read().resource(Observation.class).withId(observationId).execute();
