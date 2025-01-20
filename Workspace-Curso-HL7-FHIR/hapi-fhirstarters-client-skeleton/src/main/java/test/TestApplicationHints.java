@@ -78,7 +78,7 @@ public class TestApplicationHints {
 		// Punto 2 - D  --->>> DA error
 		// Modificar el estado de una observaci�n existente
 		//System.out.println("Modificando el estado de una observaci�n existente:");
-		updateObservationStatus("a2179bca-9c7e-4f1c-9125-c7401c253c14", "final");
+		//updateObservationStatus("a2179bca-9c7e-4f1c-9125-c7401c253c14", "final");
 		//listObservationStatuses();
 		//---------------------------------------------------//
 		
