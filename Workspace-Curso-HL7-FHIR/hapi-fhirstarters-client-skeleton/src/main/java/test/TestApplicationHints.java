@@ -28,11 +28,13 @@ public class TestApplicationHints {
 	 * This class contains hints for the tasks outlined in TestApplication
 	 */
 	
+	private static FhirContext ctx;
+	private static  IGenericClient client; 
 	
 	public static void main(String[] args) {
 		//esto deberia ser una clase estatica para que se llame una sola vez por el consumo de recursos
-		//FhirContext ctx = FhirContext.forR4();
-	    //IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
+		ctx = FhirContext.forR4();
+	    client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
 		
 		
 		//System.out.println("Listando IDs de observaciones:");
@@ -44,7 +46,7 @@ public class TestApplicationHints {
 		
 		// Punto 1 - A  ok
 		//System.out.println("Obteniendo paciente por ID:");
-		//getPatientById("patient-id");
+		//getPatientById("patient-id");	    
 
 		// Punto 1 - B  ok
 		//System.out.println("Obteniendo observaci�n por ID:");
@@ -109,9 +111,7 @@ public class TestApplicationHints {
 	
 	// esta funcion hay que eliminarla porque es de prueba del punto 2 - D
 	public static void listObservationStatuses() {
-	    FhirContext ctx = FhirContext.forR4();
-	    IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
+	    
 	    Bundle results = client
 	        .search()
 	        .forResource(Observation.class)
@@ -127,9 +127,6 @@ public class TestApplicationHints {
 	/////////////
 
 	public static void listObservationIds() {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Observation.class)
@@ -143,9 +140,6 @@ public class TestApplicationHints {
 	}
 
 	public static void listPatientIds() {
-	    FhirContext ctx = FhirContext.forR4();
-	    IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 	    org.hl7.fhir.r4.model.Bundle results = client
 	        .search()
 	        .forResource(Patient.class)
@@ -161,9 +155,6 @@ public class TestApplicationHints {
 
 	// Punto 1 - A
 	public static void getPatientById(String patientId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Patient patient;
 		try {
 			patient = client.read().resource(Patient.class).withId(patientId).execute();
@@ -178,9 +169,6 @@ public class TestApplicationHints {
 
 	// Punto 1 - B
 	public static void getObservationById(String observationId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Observation observation;
 		try {
 			observation = client.read().resource(Observation.class).withId(observationId).execute();
@@ -195,9 +183,6 @@ public class TestApplicationHints {
 
 	// Punto 1 - C
 	public static void getPatientsByLastName(String lastName) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Patient.class)
@@ -210,9 +195,6 @@ public class TestApplicationHints {
 		
 	    // Punto 1 - D
 	    public static void getObservationsByStatusAndPatientLastName(String status, String lastName) {
-	        FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Observation.class)
@@ -228,9 +210,6 @@ public class TestApplicationHints {
 
 	// Punto 2 - A
 	public static void createPatient(String firstName, String lastName, String birthDate, String gender, String street, String city, String state, String country) {
-	    FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Patient patient = new Patient();
 		patient.addName().setFamily(lastName).addGiven(firstName);
 		patient.setBirthDateElement(new DateType(birthDate));
@@ -246,9 +225,6 @@ public class TestApplicationHints {
 
 	// Punto 2 - B
 	public static void updatePatientAddress(String patientId, String newStreet, String newCity, String newState, String newCountry) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Patient patient = client.read().resource(Patient.class).withId(patientId).execute();
 		patient.getAddressFirstRep().setLine(Collections.singletonList(new StringType(newStreet)))
 				.setCity(newCity)
@@ -263,9 +239,6 @@ public class TestApplicationHints {
 
 	// Punto 2 - C
 	public static void copyObservationWithNewPatientId(String observationId, String newPatientId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Observation observation = client.read().resource(Observation.class).withId(observationId).execute();
 		observation.setSubject(new Reference("Patient/" + newPatientId));
 		observation.setId(IdType.newRandomUuid());
@@ -279,9 +252,6 @@ public class TestApplicationHints {
 
 	// Punto 2 - D
 	public static void updateObservationStatus(String observationId, String newStatus) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		Observation observation = client.read().resource(Observation.class).withId(observationId).execute();
 		observation.setStatus(Observation.ObservationStatus.fromCode(newStatus));
 
@@ -296,18 +266,12 @@ public class TestApplicationHints {
 
 	// Punto 3 - A
 	public static void deletePatientById(String patientId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		client.delete().resourceById(new IdType("Patient", patientId)).execute();
 		System.out.println("Patient with ID " + patientId + " has been deleted.");
 	}
 
 	// Punto 3 - B
 	public static void deletePatientsByIds(String[] patientIds) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		for (String patientId : patientIds) {
 			client.delete().resourceById(new IdType("Patient", patientId)).execute();
 			System.out.println("Patient with ID " + patientId + " has been deleted.");
@@ -316,17 +280,12 @@ public class TestApplicationHints {
 
 	// Punto 3 - C
 	public static void deleteObservationById(String observationId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		client.delete().resourceById(new IdType("Observation", observationId)).execute();
 		System.out.println("Observation with ID " + observationId + " has been deleted.");
 	}
 
 	// Punto 3 - D
 	public static void deleteObservationsByIds(String[] observationIds) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
 
 		for (String observationId : observationIds) {
 			client.delete().resourceById(new IdType("Observation", observationId)).execute();
@@ -336,9 +295,6 @@ public class TestApplicationHints {
 
 	// Punto 3 - E
 	public static void deleteObservationsByPatientId(String patientId) {
-		FhirContext ctx = FhirContext.forR4();
-		IGenericClient client = ctx.newRestfulGenericClient("https://server.fire.ly/r4/");
-
 		org.hl7.fhir.r4.model.Bundle results = client
 			.search()
 			.forResource(Observation.class)
