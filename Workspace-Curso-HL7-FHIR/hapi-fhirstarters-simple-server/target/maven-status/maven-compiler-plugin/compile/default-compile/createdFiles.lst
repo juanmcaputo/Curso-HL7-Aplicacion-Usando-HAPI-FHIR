@@ -1,0 +1,4 @@
+ca\uhn\fhir\example\Servidor.class
+ca\uhn\fhir\example\Example01_PatientResourceProvider.class
+ca\uhn\fhir\example\observationResourceProvider.class
+ca\uhn\fhir\example\patientResourceProviders.class
