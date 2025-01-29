@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "c7e3cc7f-762a-4ce6-8ac1-2f43cc8e919c",
+		"_postman_id": "bfbb3fa1-667c-4194-b2ad-4da34f5587db",
 		"name": "Practica-Unidad-2-Parte-1",
 		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33059216"
+		"_exporter_id": "3237340"
 	},
 	"item": [
 		{
@@ -106,15 +106,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Patient?family=Perez",
 					"protocol": "https",
@@ -158,15 +149,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Patient/2dfb6d72-5802-4b94-8427-5a333ad365db",
 					"protocol": "https",
@@ -205,15 +187,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Observation?subject.family=Perez",
 					"protocol": "https",
@@ -231,53 +204,6 @@
 							"key": "subject.family",
 							"value": "Perez"
 						}
-					]
-				},
-				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Post data Copy 2",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful POST request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://server.fire.ly/r4/Observation/145595c7-4905-42c0-82cc-758f9a13185c",
-					"protocol": "https",
-					"host": [
-						"server",
-						"fire",
-						"ly"
-					],
-					"path": [
-						"r4",
-						"Observation",
-						"145595c7-4905-42c0-82cc-758f9a13185c"
 					]
 				},
 				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
@@ -304,17 +230,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "https://server.fire.ly/r4/AllergyIntolerance?category=medication&_count=2",
+					"raw": "https://server.fire.ly/r4/AllergyIntolerance?category=medication",
 					"protocol": "https",
 					"host": [
 						"server",
@@ -329,10 +246,6 @@
 						{
 							"key": "category",
 							"value": "medication"
-						},
-						{
-							"key": "_count",
-							"value": "2"
 						}
 					]
 				},
@@ -360,15 +273,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/AllergyIntolerance?category=medication&_count=2",
 					"protocol": "https",
@@ -416,15 +320,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Observation?status=final",
 					"protocol": "https",
@@ -468,15 +363,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Observation?status=final&_count=2",
 					"protocol": "https",
@@ -524,15 +410,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Observation?_include=Observation:subject",
 					"protocol": "https",
@@ -809,15 +686,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"resourceType\": \"Observation\",\n    \"id\": \"145595c7-4905-42c0-82cc-758f9a13185c\",\n    \"text\": {\n        \"status\": \"generated\",\n        \"div\": \"<div xmlns=\\\"http://www.w3.org/1999/xhtml\\\"><p><b>Generated Narrative: Observation</b><a name=\\\"domperidona\\\"> </a></p><div style=\\\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\\\"><p style=\\\"margin-bottom: 0px\\\">Resource Observation &quot;domperidona&quot; </p></div><p><b>identifier</b>: id: domperidona (use: OFFICIAL)</p><p><b>status</b>: final</p><p><b>code</b>: Domperidone 20 MG Oral Tablet <span style=\\\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\\\"> (<a href=\\\"http://snomed.info/sct\\\">SNOMED-CT</a>#308136)</span></p><p><b>subject</b>: <a href=\\\"https://server.fire.ly/Patient/c1437aac-55e2-4bad-beef-4cbac5602d5c\\\">Patient/c1437aac-55e2-4bad-beef-4cbac5602d5c</a> &quot;Camila Perez Ruiz&quot;</p><p><b>effective</b>: 2024-12-09T00:00:00Z</p><p><b>issued</b>: 2024-12-09T00:00:00Z</p><p><b>performer</b>: <a href=\\\"https://server.fire.ly/Practitioner/f005\\\">Practitioner/f005: A. Langeveld</a> &quot;Langeveld ANNE&quot;</p><p><b>value</b>: 20 mg<span style=\\\"background: LightGoldenRodYellow\\\"> (Details: UCUM code mg = 'mg')</span></p><p><b>interpretation</b>: Normal <span style=\\\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\\\"> (<a href=\\\"http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation.html\\\">ObservationInterpretation</a>#N)</span></p></div>\"\n    },\n    \"identifier\": [\n        {\n            \"use\": \"official\",\n            \"system\": \"http://www.hl7.org/fhir/observation-id\",\n            \"value\": \"domperidona\"\n        }\n    ],\n    \"status\": \"final\",\n    \"code\": {\n        \"coding\": [\n            {\n                \"system\": \"http://snomed.info/sct\",\n                \"code\": \"308136\",\n                \"display\": \"Domperidone 20 MG Oral Tablet\"\n            }\n        ]\n    },\n    \"subject\": {\n        \"reference\": \"https://server.fire.ly/r4/Patient/145595c7-4905-42c0-82cc-758f9a13185c\",\n        \"display\": \"Camila Perez Ruiz\"\n    },\n    \"effectiveDateTime\": \"2024-12-09T00:00:00Z\",\n    \"issued\": \"2024-12-09T00:00:00Z\",\n    \"performer\": [\n        {\n            \"reference\": \"https://server.fire.ly/r4/Practitioner/f005\",\n            \"display\": \"A. Langeveld\"\n        }\n    ],\n    \"valueQuantity\": {\n        \"value\": 20,\n        \"unit\": \"mg\",\n        \"system\": \"http://unitsofmeasure.org\",\n        \"code\": \"mg\"\n    },\n    \"interpretation\": [\n        {\n            \"coding\": [\n                {\n                    \"system\": \"http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation\",\n                    \"code\": \"N\",\n                    \"display\": \"Normal\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"versionId\": \"91948b08-71b3-4ad3-b310-79425446feb8\",\n        \"lastUpdated\": \"2024-12-09T22:11:16.818+00:00\"\n    }\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "https://server.fire.ly/r4/Observation?subject=Patient/2dfb6d72-5802-4b94-8427-5a333ad365db",
 					"protocol": "https",
