@@ -11,33 +11,43 @@ import org.hl7.fhir.instance.model.api.IBaseResource;
 
 import ca.uhn.fhir.model.primitive.IdDt;
 import ca.uhn.fhir.rest.annotation.Create;
+import ca.uhn.fhir.rest.annotation.Delete;
 import ca.uhn.fhir.rest.annotation.IdParam;
 import ca.uhn.fhir.rest.annotation.Read;
 import ca.uhn.fhir.rest.annotation.RequiredParam;
 import ca.uhn.fhir.rest.annotation.ResourceParam;
 import ca.uhn.fhir.rest.annotation.Search;
+import ca.uhn.fhir.rest.annotation.Update;
 import ca.uhn.fhir.rest.api.MethodOutcome;
 import ca.uhn.fhir.rest.param.StringParam;
 import ca.uhn.fhir.rest.server.IResourceProvider;
 import ca.uhn.fhir.rest.server.exceptions.ResourceNotFoundException;
 
-public class Hints implements IResourceProvider {
-	private Map<String, Patient> myPatients = new HashMap<String, Patient>();
-	private int myNextId = 2;
+public class patientResourceProviders implements IResourceProvider {
 
+	private static globals Globales;
 	/** Constructor */
-	public Hints() {
+	public patientResourceProviders() {
 		Patient pat1 = new Patient();
 		pat1.setId("1");
 		pat1.addIdentifier().setSystem("http://acme.com/MRNs").setValue("7000135");
-		pat1.addName().setFamily("Simpson").addGiven("Homer").addGiven("J");
-		myPatients.put("1", pat1);
+		pat1.addName().setFamily("Simpson").addGiven("Homer").addGiven("J");		
+		//myPatients.put("1", pat1);
+	}
+	
+	public patientResourceProviders(globals globales) {
+		Globales = globales;
+		Patient pat1 = new Patient();
+		pat1.setId("1");
+		pat1.addIdentifier().setSystem("http://acme.com/MRNs").setValue("7000135");
+		pat1.addName().setFamily("Simpson").addGiven("Homer").addGiven("J");		
+		Globales.myPatients.put("1", pat1);
 	}
 
-	/** Simple implementation of the "read" method */
+
 	@Read(version = false)
 	public Patient read(@IdParam IdType theId) {
-		Patient retVal = myPatients.get(theId.getIdPart());
+		Patient retVal = Globales.myPatients.get(theId.getIdPart());
 		if (retVal == null) {
 			throw new ResourceNotFoundException(theId);
 		}
@@ -51,21 +61,17 @@ public class Hints implements IResourceProvider {
 
 	@Create
 	public MethodOutcome create(@ResourceParam Patient thePatient) {
-		// Give the resource the next sequential ID
-		int id = myNextId++;
+		int id = Globales.myNextPatientID++;
 		thePatient.setId(new IdType(id));
+		Globales.myPatients.put(Integer.toString(id), thePatient);
 
-		// Store the resource in memory
-		myPatients.put(Integer.toString(id), thePatient);
-
-		// Inform the server of the ID for the newly stored resource
 		return new MethodOutcome().setId(thePatient.getIdElement());
 	}
 
 	@Search
 	public List<Patient> search() {
 		List<Patient> retVal = new ArrayList<Patient>();
-		retVal.addAll(myPatients.values());
+		retVal.addAll(Globales.myPatients.values());
 		return retVal;
 	}
 
@@ -73,8 +79,7 @@ public class Hints implements IResourceProvider {
 	public List<Patient> search(@RequiredParam(name = Patient.SP_FAMILY) StringParam theParam) {
 		List<Patient> retVal = new ArrayList<Patient>();
 
-		// Loop through the patients looking for matches
-		for (Patient next : myPatients.values()) {
+		for (Patient next : Globales.myPatients.values()) {
 			String familyName = next.getNameFirstRep().getFamily().toLowerCase();
 			if (familyName.contains(theParam.getValue().toLowerCase()) == false) {
 				continue;
@@ -85,4 +90,25 @@ public class Hints implements IResourceProvider {
 		return retVal;
 	}
 
+	// Practica 4 parte 2 punto 3 - a
+ 	@Update
+    public MethodOutcome update(@IdParam IdType theId, @ResourceParam Patient thePatient) {
+        String id = theId.getIdPart();
+        if (!Globales.myPatients.containsKey(id)) {
+            throw new ResourceNotFoundException(theId);
+        }
+        thePatient.setId(theId);
+        Globales.myPatients.put(id, thePatient);
+        return new MethodOutcome().setId(thePatient.getIdElement());
+    }
+ 	
+ 	// Practica 4 parte 2 punto 3 - b
+    @Delete
+    public void delete(@IdParam IdType theId) {
+        String id = theId.getIdPart();
+        if (!Globales.myPatients.containsKey(id)) {
+            throw new ResourceNotFoundException(theId);
+        }
+        Globales.myPatients.remove(id);
+    }
 }

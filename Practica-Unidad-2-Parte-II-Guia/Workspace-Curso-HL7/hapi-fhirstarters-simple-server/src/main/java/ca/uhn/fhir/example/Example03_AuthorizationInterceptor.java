@@ -13,6 +13,16 @@ public class Example03_AuthorizationInterceptor extends AuthorizationInterceptor
    @Override
    public List<IAuthRule> buildRuleList(RequestDetails theRequestDetails) {
 
+      // Process this header
+      String authHeader = theRequestDetails.getHeader("Authorization");
+
+      RuleBuilder builder = new RuleBuilder();
+      builder
+         .allow().metadata().andThen()
+         .allow().read().allResources().withAnyId().andThen()
+         .allow().write().resourcesOfType(Observation.class).inCompartment("Patient", new IdType("Patient/123"));
+
+      return builder.build();
    }
 
 }
