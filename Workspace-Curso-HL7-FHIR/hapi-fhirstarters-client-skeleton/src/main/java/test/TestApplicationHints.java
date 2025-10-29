@@ -25,7 +25,7 @@ import org.hl7.fhir.instance.model.api.IIdType;
 public class TestApplicationHints {
 
 	/*
-	 * This class contains hints for the tasks outlined in TestApplication
+	 * This class contains hints for the tasks outlined in TestApplication --
 	 */
 	
 	private static FhirContext ctx;
@@ -46,11 +46,12 @@ public class TestApplicationHints {
 		
 		// Punto 1 - A  ok
 		//System.out.println("Obteniendo paciente por ID:");
-		//getPatientById("patient-id");	    
+		//getPatientById("39997a00-cfc5-4273-adb3-60e74627ea0f");	    
 
 		// Punto 1 - B  ok
 		//System.out.println("Obteniendo observaci�n por ID:");
 		//getObservationById("observation-id");
+	    //getObservationById("f810cf4e-a068-448f-94dd-e326d7700892");
 
 		// Punto 1 - C  ok
 		//System.out.println("Obteniendo pacientes por apellido:");
@@ -65,7 +66,7 @@ public class TestApplicationHints {
 		// Punto 2 - A  ok
 		// Crear un nuevo paciente 
 		//System.out.println("Creando un nuevo paciente:");
-		//createPatient("John", "Doe", "1980-01-01", "male", "123 Main St", "Anytown", "Anystate", "USA");
+		//createPatient("Homero J", "Sim", "1980-01-01", "male", "123 Main St", "Anytown", "Anystate", "USA");
 
 		// Punto 2 - B  ok 
 		// Modificar la direcci�n del paciente creado  
@@ -87,6 +88,7 @@ public class TestApplicationHints {
 		// Punto 3 - A  ok 
 	    //System.out.println("Eliminando un paciente por ID:");
 	    //deletePatientById("patient-id1");
+	    //deletePatientById("4072ee10-46f8-4c45-aa6e-91a3dbc59e13");
 
 	    // Punto 3 - B  ok
 	    //System.out.println("Eliminando m�ltiples pacientes por IDs:");

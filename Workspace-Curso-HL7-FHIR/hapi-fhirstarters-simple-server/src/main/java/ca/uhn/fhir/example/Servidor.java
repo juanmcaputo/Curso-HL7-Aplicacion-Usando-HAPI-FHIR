@@ -15,11 +15,7 @@ public class Servidor extends RestfulServer {
 		// Create a context for the appropriate version
 		setFhirContext(FhirContext.forR4());
 		
-		// Register resource providers
-		//registerProvider(new Example01_PatientResourceProvider());
-	
+		// Register resource providers	
 		registerProvider(new patientResourceProviders());
-		// Format the responses in nice HTML
-		registerInterceptor(new ResponseHighlighterInterceptor());
 	}
 }
